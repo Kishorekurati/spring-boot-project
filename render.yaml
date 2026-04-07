@@ -1,6 +1,25 @@
-services:
-  - type: web
-    name: springboot-app
-    runtime: java
-    buildCommand: mvn clean install
-    startCommand: java -jar target/*.jar
+# Exported from Render on 2026-04-07T17:28:09Z
+version: "1"
+projects:
+  - name: My project
+    environments:
+      - name: Production
+        services:
+          - type: web
+            name: springboot-app
+            runtime: java
+            repo: https://github.com/Kishorekurati/spring-boot-project
+            plan: free
+            envVars:
+              - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+                sync: false
+              - key: my_testing_spring_db_user
+                sync: false
+              - key: SPRING_DATASOURCE_USERNAME
+                sync: false
+              - key: SPRING_DATASOURCE_URL
+                sync: false
+            region: oregon
+            buildCommand: mvn clean install
+            startCommand: java -jar target/*.jar
+            autoDeployTrigger: commit
